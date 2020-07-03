@@ -27,6 +27,7 @@ class IgDatum < ApplicationRecord
     url = "http://www.instagram.com/p/#{code}?__a=1"
 
     session.visit url
+    puts session.html
     JSON.parse(session.first('pre').text)
   end
 end
