@@ -24,7 +24,7 @@ class IgDatum < ApplicationRecord
 
   def self.get_data(code)
     session = Capybara.current_session
-    url = "http://www.instagram.com/p/#{code}?__a=1"
+    url = "https://instagram.com/p/#{code}?__a=1"
 
     session.visit url
     # byebug
@@ -46,7 +46,7 @@ end
         "name"=>"rur",
         "path"=>"/",
         "secure"=>true,
-        "value"=>"FTW"
+        "value"=>"PRN"
       }>,
     "csrftoken"=>
       #<Capybara::Poltergeist::Cookie:0x00005640fa341020
