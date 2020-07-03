@@ -28,7 +28,7 @@ class IgDatum < ApplicationRecord
 
     session.visit url
     # byebug
-    session.driver.set_cookie('rur', 'prn')
+    session.driver.set_cookie('rur', 'PRN')
     session.visit url
 
     puts session.driver.cookies
