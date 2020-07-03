@@ -28,7 +28,60 @@ class IgDatum < ApplicationRecord
 
     session.visit url
     # byebug
+    session.driver.set_cookie('rur', 'prn')
+    session.visit url
+
     puts session.driver.cookies
     JSON.parse(session.first('pre').text)
   end
 end
+
+=begin
+{
+  "rur"=>
+    #<Capybara::Poltergeist::Cookie:0x00005640fa341098
+      @attributes={
+        "domain"=>".instagram.com",
+        "httponly"=>true,
+        "name"=>"rur",
+        "path"=>"/",
+        "secure"=>true,
+        "value"=>"FTW"
+      }>,
+    "csrftoken"=>
+      #<Capybara::Poltergeist::Cookie:0x00005640fa341020
+        @attributes={
+          "domain"=>".instagram.com",
+          "expires"=>"Fri, 02 Jul 2021 23:22:52 GMT",
+          "expiry"=>1625268172,
+          "httponly"=>false,
+          "name"=>"csrftoken",
+          "path"=>"/",
+          "secure"=>true,
+          "value"=>"vt8vkJBykW7ueSXqqf43TWeZb40BAGeY"
+        }>,
+      "mid"=>#<Capybara::Poltergeist::Cookie:0x00005640fa340ee0
+        @attributes={
+          "domain"=>".instagram.com",
+          "expires"=>"Mon, 01 Jul 2030 23:22:52 GMT",
+          "expiry"=>1909178572,
+          "httponly"=>false,
+          "name"=>"mid",
+          "path"=>"/",
+          "secure"=>true,
+          "value"=>"Xv-9zAAEAAFvRTSrWXDFU75Kcd5-"
+        }>,
+      "ig_did"=>
+        #<Capybara::Poltergeist::Cookie:0x00005640fa340e40
+          @attributes={
+            "domain"=>".instagram.com",
+            "expires"=>"Mon, 01 Jul 2030 23:22:52 GMT",
+            "expiry"=>1909178572,
+            "httponly"=>true,
+            "name"=>"ig_did",
+            "path"=>"/",
+            "secure"=>true,
+            "value"=>"DC3A0110-0E67-4CD0-B7D1-91DF57D2AD54"
+          }>
+}
+=end
