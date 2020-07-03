@@ -26,9 +26,10 @@ class IgDatum < ApplicationRecord
     session = Capybara.current_session
     url = "https://instagram.com/p/#{code}?__a=1"
 
-    session.visit url
+    # session.visit url
     # byebug
     session.driver.set_cookie('rur', 'PRN')
+    session.driver.set_cookie('urlgen', "\"{\\\"2001:d08:d1:dd0c:a19b:b90f:2e2e:aefe\\\": 9534}:1jrVOp:cCLBmXHu6ycE8K_w7xiXN_GIT8s\"")
     session.visit url
 
     puts session.driver.cookies
