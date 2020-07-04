@@ -7,6 +7,16 @@ class IgDataController < ApplicationController
     render json: {data: ig_datas}
   end
 
+  def show
+    ig_data = IgDatum.find_by(code: params[:code]) || IgDatum.new(code: params[:code])
+    if ig_data.new_record?
+      ig_data.save!
+    else
+      IgDatum.update_or_create([ig_data.code])
+    end
+    render json: {data: ig_data.relevant_data}
+  end
+
   private
   def set_poltergeist
     @session = Capybara.current_session

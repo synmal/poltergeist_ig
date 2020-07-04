@@ -1,4 +1,6 @@
 class IgDatum < ApplicationRecord
+  before_create :set_data
+
   def self.update_or_create(codes)
     codes.map do |code|
       existing_data = find_by(code: code)
@@ -20,6 +22,8 @@ class IgDatum < ApplicationRecord
       comments: data.dig('graphql', 'shortcode_media', 'edge_media_preview_comment', 'count'),
       created_time: data.dig('graphql', 'shortcode_media', 'taken_at_timestamp')
     }
+  rescue
+    {'post_status': 'private'}
   end
 
   def self.get_data(code)
@@ -31,5 +35,13 @@ class IgDatum < ApplicationRecord
     session.visit url
 
     JSON.parse(session.first('pre').text)
+
+  rescue
+    {'post_status': 'private'}
+  end
+
+  private
+  def set_data
+    self.data = self.class.get_data(self.code)
   end
 end
