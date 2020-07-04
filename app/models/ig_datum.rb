@@ -29,6 +29,7 @@ class IgDatum < ApplicationRecord
     session.visit url
     # byebug
     session.driver.set_cookie('rur', 'PRN')
+    session.driver.set_cookie('sessionid', '541015026%3AmVtswruw3BZvGI%3A27', domain: '.instagram.com', httponly: true, secure: true, path: '/' )
     session.driver.set_cookie('urlgen', "\"{\\\"2001:d08:d1:dd0c:a19b:b90f:2e2e:aefe\\\": 9534}:1jrVOp:cCLBmXHu6ycE8K_w7xiXN_GIT8s\"", httponly: true, path: '/', secure: true, domain: '.instagram.com')
     session.visit url
 
